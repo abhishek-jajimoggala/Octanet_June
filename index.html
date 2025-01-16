@@ -3,32 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Nithya Suvartha Church</title>
+    <style>
+        body {
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-image: url("/nsps-img/nsps banner.png"); /* Replace 'background-image.jpg' with your image path */
+            background-size: cover;
+            background-position: center;
+            width:100%;
+            height:35vh; /* Adjust height as needed */
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            text-align: center;
+            
+        }
+        .logo {
+            position: absolute;
+            margin-top: 320px;
+            left: 420px;
+            width: 150px; /* Adjust size as needed */
+            display: inline-block;
+        }
+        .address {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px 20px;
+            text-align: center;
+            transition: 0.7s ease;
+            flex:wrap;
+            position:;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            
+        }
+        nav a:hover {
+            color: #b12121;
+        }
+        section {
+            padding:10px 20px;
+        }
+        h2 {
+            margin-top: 10px;
+        }
+        .sub-pics {
+            display:inline-block;
+            justify-content:space-around;
+            align-items: center;
+            margin-top: 10px;
+        }
+         .img1 {
+            width: 350px; /* Adjust size as needed */
+            margin-left:500px;
+            align-items: center;
+            padding:12px;
+            border: 10px solid #333;
+            height: 550px;
+        }
+        .img2{
+            width:450px;
+            height: 576px;
+            margin-left:150px ;
+            border: 10px ;
+        }
+        .banner{
+            color:white;
+            background-image:linear-gradient(45deg,#8e2de2,#4a00e0);
+            text-align: center;
+            font-size:25px;
+            width:100%;
+            height: 80px;
+            font-family:'Bookman Old Style';
+            
+        }
+    </style>
 </head>
-<style>
-    body{
-        background:linear-gradient(250deg,orange,skyblue,green);
-        text-align: center;
-        background-repeat: no-repeat;
-    }
-    div,p{
-        color: brown;
-        background-size: 250px;
-        text-decoration: double;
-    }
-    h1{
-        color:chocolate;
-    }
-    marquee{
-        background-color:green;
-        font-size:800;
-</style>
 <body>
-    <h1>Hello abhishek</h1>
-    <div >
-        <marquee class-color-blue-600>Welcome to abhishek</marquee>
-        <p>my name is abhishek.<b>I was born on VISHAKAPATNAM</b></p>
+    <header>
+        <img src="/tutorial-1 html/nsps-img/nsps logo.png" alt="Nithya Suvartha Church Logo" class="logo"> <!-- Replace "church-logo.png" with your logo file -->
+        <div class="title"></div>
+    </header>
+    <div class="address">
+        <strong>Nithya Suvartha Church, Madhuranagar</strong>
+        <p style="font-size: 20px;">Near Railway Station</p>
     </div>
-    <form></form>
+    <nav>
+        <a href="#sunday-services">Sunday Services</a>
+        <a href="#new-church-foundations">New Church Foundations</a>
+        <a href="#youth-meet">Youth Meet</a>
+        <a href="#kids-church">Kids Church</a>
+        <a href="#mens-meet">Men's Meet</a>
+        <a href="#womens-meet">Women's Meet</a>
+        <a href="#family-counselings">Family Counsellings</a>
+        <a href="#gospel-meet">Gospel Meet</a>
+        <a href="#">English Service</a>
+    </nav>
+    <div class="banner"><section id="sunday-services">
+        <h2>Sunday Services</h2></div>
+            <img class="img1" src="/tutorial-1 html/nsps-img/sunday service.jpeg" alt="Sunday Service Pic 1">
+            
+        
+    </section>
+    <div class="banner"><section id="new-church-foundations">
+        <h2>NEW CHURCH INAGURATION</h2></div>
+            <img class="img1" src="/tutorial-1 html/nsps-img/inugarations.jpeg" alt="Sunday Service Pic 1">
+            
+        
+    </section>
+    <div class="banner"><section id="youth-meet">
+        <h2>YOUTH MEETING</h2></div>
+            <img class="img1" src="/tutorial-1 html/nsps-img/youth meet.jpeg" alt="Sunday Service Pic 1">
+            
+        
+    </section>
+</section>
+<div class="banner"><section id="kids-church">
+    <h2>KIDS CAMP</h2></div>
+        <img class="img2" src="/tutorial-1 html/nsps-img/kids camp 1.jpeg" alt="Sunday Service Pic 1">
+        <img class="img2" src="/tutorial-1 html/nsps-img/kids camp 2.jpeg" alt="Sunday Service Pic 1">
+        
+    
+</section>
+</section>
+<div class="banner"><section id="family-counselings">
+    <h2>FAMILY-COUNCILING</h2></div>
+        <img class="img1" src="/nsps-img/family counselling.jpeg" alt="Sunday Service Pic 1">
+        
+    
+</section>
+    
+</section>
+<div class="banner"><section id="gospel-meet">
+    <h2>GOSPEL MEETING</h2></div>
+        <img class="img2" src="/nsps-img/gospal meet.jpeg" alt="Sunday Service Pic 1">
+        <img class="img2"  src="/nsps-img/gospel meet.jpeg" alt="">
+    
+</section>
+
+    
+    <!-- Repeat the section for other categories with respective IDs and images -->
 </body>
 </html>
