@@ -1,278 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English grammer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  /*<link rel="stylesheet" href="styles.css">*/
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<style>
-    *{
-    margin: 0;
-    padding:0px;
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Jacquard+12&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  --light-color:#fff;
+  --dark-color:black;
+  --light-purple-color:#8854c0;
+  --grey-color:#f2f2f2;
+  --transition: all 300ms easy-in-out;
+}
+.flex{
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 body{
-background:url("C:\Users\ABHISHEK\Pictures\Thumbnail Maker for YT Studio\new year_poster.jpeg");
-  background-position:center;
-  padding-left:30px;
+  font-family: 'poppins',sans-serif;
+  min-height: 100vh;
+  color:var(--dark-color);
+  background-color:var(--grey-color)
+}
+.wrapper{
+  background-color: var(--light-color);
+  padding: 1.5rem 4rem 3rem 4rem;
+  width:600px;
+  height:680px;
+  border-top-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  position:relative;
+  box-shadow: 0 4px 6px rgb(0 0 0 /10%),0 1px 3px rgb(0 0 0/10%);
+}
+.quiz-title{
+  text-align: center;
+  font-size: 2rem;
+}
+.quiz-score{
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border:5px solid var(--grey-color);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  width: 100px;
+  height: 50px;
+  margin:.5rem auto;
+  color: var(--light-purple-color);
+}
+.quiz-question{
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+.quiz-question .category{
+  font-size:0.9rem;
+  font-weight: 500;
+  background-color: var(--light-purple-color);
+  color:var(--light-color);
+  padding:.2rem .4rem;
+  border-radius: .2rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+.quiz-options{
+  list-style-type: none;
+  margin:1rem 0;
+}
+.quiz-options li{
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin: .7rem 0;
+  padding: .4rem 1.2rem;
+  cursor: pointer;
+  border:3px solid var(--light-purple-color);
+  background-color: var(--light-purple-color);
+  color: #f2f2f2;
+  box-shadow: 0 5px 0 0 #550855;
+  transition: var(--transition);
+}
+.quiz-options li:hover{
+  background-color: var(--grey-color);
+  color:var(--dark-color);
+  border-color: var(--grey-color);
+  box-shadow: 0 4px 0 0 #6e0e0e;
+}
+.quiz-options li:active{
+  transform: scale(0.97);
+}
+.selected{
+  border-color: var(--grey-color)!important;
+  color:var(--dark-color)!important;
+  background-color: var(--grey-color)!important;
+  box-shadow: 0 4px 0 0 #bbb !important;
+}
+.quiz-foot button{
+  border:none;
+  border-radius: 0.5rem;
+  outline: 0;
+  font-family: 'poppins','sans-serif';
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  margin: 0 auto;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: block;
+  border-color: var(--grey-color);
+  color: #000;
+  letter-spacing: 2px;
+  transition: var(--transition);
+  box-shadow: 0 4px 0 0 #bbb;
+}
+.quiz-foot button:hover{
+  background-color:#e6e6e6;
+  box-shadow: 0 4px 0 0 #a7a7a7;
+}
+.quiz-foot button:active{
+  transform: scale(0.95);
+}
+#play-again{
+  display: none;
+}
+/*results styling*/
+#result{
+  padding: .7rem 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+#result i{
+  height: 30px;
+  height: 30px;
+  border-radius: 50%;
+  line-height: 30px;
+  margin-right:.5rem ;
+  margin-bottom: .5rem;
+  background-color: var(--light-purple-color);
+  color:var(--light-color);
+}
+@media(max-width:678px){
+  .quiz-title{
+    font-size: 1.6rem;
+  }
+  .wrapper{
+    margin: 3rem 0;
+    width:90%;
+    padding:1.5rem 1rem 3rem 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .quiz-foot bottom{
+    font-size: 1rem;
+  }
+}
+	</style>
+<body class="flex">
+  <div class="wrapper">
+    <div class="quiz-container">
+      <div class="quiz-head">
+        <h1 class="quiz-title">Quiz Game</h1>
+        <div class="quiz-score">
+          <span id="correct-score"></span>/<span id="total-question"></span>
+        </div>
+      </div>
+      <div class="quiz-body">
+        <h2 class="quiz-question"id="question"><!--What is the Full form of HTTP? <br><span class="category">Geography</span>--></h2>
+        <ul class="quiz-options">
+          <!--<li>1.Hyper text transfer package</li>
+          <li>2.Hyper text transfer protocal</li>
+          <li>3.Hyper text transfer parser</li>
+          <li>4.None of the above</li>-->
+        </ul>
+        <div id="result">
+          <!--results here-->
+        </div>
+      </div>
+      <div class="quiz-foot">
+        <button type="button"id="check-answer">Check Answer</button>
+        <button type="button"id="play-again">Play Again!</button>
+      </div>
+    </div>
+  </div>
 
+
+<!--quiz app js-->
+  <script>
+	  const _question=document.getElementById('question');
+const _options=document.querySelector('.quiz-options');
+const _correctScore=document.getElementById('correct-score');
+const _totalQuestion=document.getElementById('total-question');
+const _checkBtn=document.getElementById('check-answer');
+const _playAgainBtn=document.getElementById('play-again');
+const _result=document.getElementById('result');
+
+let correctAnswer="",correctScore = askedCount=0,totalQuestion=10;
+
+//event listeners
+function eventListeners(){
+  _checkBtn.addEventListener('click',checkAnswer);
+  _playAgainBtn.addEventListener('click',restartQuiz);
 }
-h1{
-    color:black;
-    
+document.addEventListener('DOMContentLoaded',()=>{
+     loadQuestion();
+     eventListeners();
+    _totalQuestion.textContent=totalQuestion;
+    _correctScore.textContent=correctScore;
+});
+
+async function loadQuestion() {
+  const APIUrl='https://opentdb.com/api.php?amount=1';
+  const result=await fetch(`${APIUrl}`);
+  const data=await result.json();
+  //console.log(data.results[0]);
+  _result.innerHTML="";
+  showQuestion(data.results[0]);
 }
-table,th,td{
-    border:3px solid rgb(8, 8, 72);
-    border-spacing:1px;
-    width:28%;
-    height:10vh;
-    text-align: center;
-    margin-right: auto;
-    margin-left:auto;
+//display question and options
+function showQuestion(data){
+  _checkBtn.disabled=false;
+  correctAnswer=data.correct_answer;
+  let incorrectAnswer=data.incorrect_answers;
+  let optionsList=incorrectAnswer;
+  optionsList.splice(Math.floor(Math.random()*(incorrectAnswer.length +1)),0,correctAnswer);
+
+  _question.innerHTML=`${data.question}<br> <span class="category">${data.category} </span>`;
+  _options.innerHTML=`
+      ${optionsList.map((option,index)=>`
+         <li> ${index +1}.<span> ${option} </span> </li>
+    `).join('')}
+  `;
+  selectOption();
+}
+function selectOption(){
+    _options.querySelectorAll('li').forEach((option)=>{
+     option.addEventListener('click',()=>{
+    if(_options.querySelector('.selected')){
+      const activeOption=_options.querySelector('.selected');
+      activeOption.classList.remove('selected');
+    }
+    option.classList.add('selected');
+  });
+});
+console.log(correctAnswer);
 }
 
-}
-td:nth-child(odd){
-    color:rgb(26, 2, 2);
-    border-style:double;
-    max-width: 5px;
-    border:2px solid rgb(205, 15, 15);
-}
-</style>
-<body>
-    <h1>English grammer</h1>
-<table border=1>
-</br>
-<tr>
-    <th>English Meaning</th>
-    <th>Telugu Meaning</th>
-</tr>	
-	<tr>
-        <td>Do</td>
-        <td>చేయండి</td>
-    </tr>
-    <tr>
-        <td>What are you doing?</td>
-        <td>నువ్వేమి చేస్తున్నావు</td>
-    </tr>
-    <tr>
-        <td>Do it now</td>
-        <td>ఇప్పుడే చేయండి</td>
-    </tr>
-    <tr>
-        <td>Do you have any problem</td>
-        <td>నీకు ఏదైనా సమస్య ఉందా</td>
-    </tr>
-    <tr>
-        <td>Do you have any problem on it</td>
-        <td>దానిలో మీకు ఏమైనా సమస్య ఉందా</td>
-    </tr>
-    <tr>
-        <td>You do</td>
-        <td>నువ్వు చెయ్యి</td>
-    </tr>
-	<tr>
-        <td>Don’t do</td>
-        <td>చేయవద్</td>
-    </tr>
-    <tr>
-        <td>Don’t forgot </td>
-        <td>మర్చిపోవద్</td>
-    </tr>
-    <tr>
-        <td>Don’t say anything  </td>
-        <td>ఏమీ అనకండి </td>
-    </tr>
-    <tr>
-        <td>Doing it</td>
-        <td>చేస్తున్నాను</td>
-    </tr>
-    <tr>
-        <td>What doing do?</td>
-        <td>ఏమి చేస్తున్నాను</td>
-    </tr>
-    <tr>
-        <td> What to do? </td>
-        <td>ఏమి చేయాలి </td>
-    </tr>
-    <tr>
-        <td>What not to do?</td>
-        <td>ఏమి చేయకూడదు</td>
-    </tr>
-    <tr>
-        <td>Do you know </td>
-        <td>నీకు తెలుసా</td>
-    </tr>
-	<tr>
-        <td>I want </td>
-        <td>నాకు కావాలి </td>
-    </tr>
-    <tr>
-        <td>I want to do is </td>
-        <td>నేను చేయాలనుకుంటున్నాను </td>
-    </tr>
-    <tr>
-        <td>I am good web developer software engineering </td>
-        <td>నేను సాఫ్ట్‌వేర్ ఇంజనీరింగ్‌లో మంచి వెబ్ డెవలపర్‌ని </td>
-    </tr>
-    <tr>
-        <td>I have to learn English</td>
-        <td>నేను ఇంగ్లీష్ నేర్చుకోవాలి</td>
-    </tr>
-    <tr>
-        <td>I mean </td>
-        <td>నేనేమంటానంటే</td>
-    </tr>
-    <tr><td> I want to go Vijayawada to Vishakhapatnam </td>
-    <td>నేను విజయవాడకు విశాఖపట్నం వెళ్లాలనుకుంటున్నాను</td></tr>
-<tr>
-    <td>I am a good person </td>
-    <td>నేను మంచి వ్యక్తిని</td>
-</tr>
-<tr>
-    <td>I do it </td>
-    <td>నేను చేస్తాను</td>
-</tr>
-<tr>
-    <td>I want to help you </td>
-    <td>నేను మీకు సహాయం చేయాలనుకుంటున్నాను</td>
-</tr>
-<tr>
-    <td>I want help  </td>
-    <td>నాకు సహాయం కావాలి</td>
-</tr>
-<tr>
-    <td>help </td>
-    <td>సహాయం</td>
-</tr>
-	<tr>
-        <td>I want money  </td>
-        <td>నాకు డబ్బు కావాలి</td>
-    </tr>
-</tr>
-<tr>
-    <td>Any   </td>
-    <td>ఏదైనా</td>
-</tr>
-<tr>
-    <td> Anything do it</td>
-    <td> ఏదైనా చేయండి</td>
-</tr>
-<tr>
-    <td> I want to do anything  </td>
-    <td> నేను ఏదైనా చేయాలనుకుంటున్నాను</td>
-</tr>
-<tr>
-    <td>You know నీకు తెలుసు</td>
-    <td> నీకు తెలుసు</td>
-</tr>
-<tr>
-    <td>happen </td>
-    <td> జరుగుతాయి</td>
-</tr>
-<tr>
-    <td>What happen </td>
-    <td> ఏమి జరుగుతుంది</td>
-</tr>
-<tr>
-    <td>Are you happy </td>
-    <td> నువ్వు సంతోషంగా వున్నావా</td>
-</tr>
-<tr>
-    <td>what  </td>
-    <td> ఏమి</td>
-</tr>
-<tr><td>
-    you
-</td>
-<td> మీరు</td></tr>
-<tr>
-    <td>yours </td>
-    <td>మీది </td>
-</tr>	
-<tr>
-    <td>What going on</td>
-    <td>ఏమి జరుగుచున్నది</td>
-</tr>	
-<tr>
-    <td>said</td>
-    <td>అన్నారు</td>
-</tr>	
-	<tr>
-        <td>He said abhi is a good boy </td>
-        <td>అభి మంచి అబ్బాయి అని చెప్పాడు</td>
-    </tr>
-    <tr>
-        <td>When said  </td>
-        <td>అని చెప్పినప్పుడు</td>
-    </tr>
-    <tr>
-        <td>try </td>
-        <td>ప్రయత్నించండి</td>
-    </tr>
-    <tr>
-        <td>You try it  </td>
-        <td>మీరు ప్రయత్నించండి</td>
-    </tr>
-    <tr>
-        <td>His</td>
-        <td>తన</td>
-    </tr>
-    <tr>
-        <td>Here  </td>
-        <td>ఇక్కడ</td>
-    </tr>
-    <tr>
-        <td>Where are you from </td>
-        <td>నువ్వు ఎక్కడ నుంచి వచ్చావు</td>
-    </tr>
-    <tr>
-        <td>Where he said </td>
-        <td>ఎక్కడ అన్నాడు</td>
-    </tr>
-    <tr>
-        <td>Which  </td>
-        <td>ఏది</td>
-    </tr>
-    <tr>
-        <td>Which of the following statement  </td>
-        <td>కింది వాటిలో ఏది</td>
-    </tr>
-    <tr>
-        <td>Did you have dinner </td>
-        <td> మీరు రాత్రి భోజనం చేశావా</td>
-    </tr>
-    <tr>
-        <td>Did you have lunch  </td>
-        <td> నువ్వు భోజనం చేశావా</td>
-    </tr>
-    <tr>
-        <td> Did   </td>
-        <td> చేసాడు</td>
-    </tr>
-    <tr>
-        <td>When did you come yesterday </td>
-        <td> నిన్న ఎప్పుడు వచ్చావు</td>
-    </tr>
-    <tr>
-        <td>That</td>
-        <td> అని</td>
-    </tr>
-    <tr>
-        <td>That’s good </td>
-        <td> బాగుంది</td>
-    </tr>
-    <tr>
-        <td> I always same with you </td>
-        <td> నేను మీతో ఎప్పుడూ ఒకేలా ఉంటాను</td>
-    </tr>
-    <tr>
-        <td> I want to same with you  </td>
-        <td> నేను మీతో కూడా అదే కోరుకుంటున్నాను</td>
-    </tr>
-    <tr>
-        <td> whats opinion on that time  </td>
-        <td> ఆ సమయంలో అభిప్రాయం ఏమిటి</td>
-    </tr>
+//answer checking
+function checkAnswer(){
+  _checkBtn.disabled=true;
+  if(_options.querySelector('.selected')){
+    let selectedAnswer = _options.querySelector('.selected span').textContent;
+    if(selectedAnswer.trim()==HTMLDecode(correctAnswer)){
+      correctScore++;
+      _result.innerHTML=`<p><i class="fas fa-check"></i>Correct Answer!</p>`;}
+      else{
+        _result.innerHTML=`<p><i class="fas fa-times"></i>wrong Answer!</p><small><b>Correct Anser:</b>${correctAnswer}</small></p>`;
+      }
+      checkCount();
+    }
+    else{
+      _result.innerHTML=`<p><i class="fas fa-question"></i>please select an option!</p>`;
+      _checkBtn.disabled=false;
+    }
+  }
 
+  function HTMLDecode(textString){
+    let doc=new DOMParser().parseFromString(textString,"text/html");
+    return doc.documentElement.textContent;
+  }
+
+function checkCount(){
+  askedCount++;
+  setCount();
+  if(askedCount==totalQuestion){
+      _result.innerHTML=`<p> your score is ${correctScore}.</p>`
+      _playAgainBtn.style.display="block";
+      _checkBtn.style.display="none";
+  }
+  else{
+    setTimeout(()=>{
+        loadQuestion();
+    },300);
+  }
+}
+function setCount(){
+  _totalQuestion.textContent=totalQuestion;
+  _correctScore.textContent=correctScore;
+}
+function restartQuiz(){
+  correctScore = askedCount=0;
+  _playAgainBtn.style.display="none";
+  _checkBtn.style.display="block";
+  _checkBtn.disabled=false;
+  setCount();
+  loadQuestion();
+}
+  </script>
 </body>
 </html>
