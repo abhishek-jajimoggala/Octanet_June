@@ -197,115 +197,150 @@ body{
 
 <!--quiz app js-->
   <script>
-	  const _question=document.getElementById('question');
-const _options=document.querySelector('.quiz-options');
-const _correctScore=document.getElementById('correct-score');
-const _totalQuestion=document.getElementById('total-question');
-const _checkBtn=document.getElementById('check-answer');
-const _playAgainBtn=document.getElementById('play-again');
-const _result=document.getElementById('result');
+	const _question = document.getElementById("question");
+const _options = document.querySelector(".quiz-options");
+const _correctScore = document.getElementById("correct-score");
+const _totalQuestion = document.getElementById("total-question");
+const _checkBtn = document.getElementById("check-answer");
+const _playAgainBtn = document.getElementById("play-again");
+const _result = document.getElementById("result");
 
-let correctAnswer="",correctScore = askedCount=0,totalQuestion=10;
+let questions = [];
+let selectedQuestions = [];
+let currentQuestionIndex = 0;
+let correctScore = 0;
+let totalQuestions = 10;
 
-//event listeners
-function eventListeners(){
-  _checkBtn.addEventListener('click',checkAnswer);
-  _playAgainBtn.addEventListener('click',restartQuiz);
-}
-document.addEventListener('DOMContentLoaded',()=>{
-     loadQuestion();
-     eventListeners();
-    _totalQuestion.textContent=totalQuestion;
-    _correctScore.textContent=correctScore;
+// Event Listeners
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadQuestions();
+  startQuiz();
+  _totalQuestion.textContent = totalQuestions;
+  _correctScore.textContent = correctScore;
+  eventListeners();
 });
 
-async function loadQuestion() {
-  const APIUrl='https://opentdb.com/api.php?amount=1';
-  const result=await fetch(`${APIUrl}`);
-  const data=await result.json();
-  //console.log(data.results[0]);
-  _result.innerHTML="";
-  showQuestion(data.results[0]);
+function eventListeners() {
+  _checkBtn.addEventListener("click", checkAnswer);
+  _playAgainBtn.addEventListener("click", restartQuiz);
 }
-//display question and options
-function showQuestion(data){
-  _checkBtn.disabled=false;
-  correctAnswer=data.correct_answer;
-  let incorrectAnswer=data.incorrect_answers;
-  let optionsList=incorrectAnswer;
-  optionsList.splice(Math.floor(Math.random()*(incorrectAnswer.length +1)),0,correctAnswer);
 
-  _question.innerHTML=`${data.question}<br> <span class="category">${data.category} </span>`;
-  _options.innerHTML=`
-      ${optionsList.map((option,index)=>`
-         <li> ${index +1}.<span> ${option} </span> </li>
-    `).join('')}
-  `;
+// Load Questions from local JSON file
+async function loadQuestions() {
+  try {
+    const response = await fetch("questions.json"); // Fetch the JSON file
+    questions = await response.json();
+    if (questions.length >= 10) {
+      selectedQuestions = getRandomQuestions(questions, 10); // Select 10 random questions
+    } else {
+      console.error("Not enough questions in the JSON file.");
+    }
+  } catch (error) {
+    console.error("Error loading questions:", error);
+  }
+}
+
+// Function to get random 10 questions from the list
+function getRandomQuestions(questions, num) {
+  let shuffled = [...questions].sort(() => 0.5 - Math.random()); // Shuffle questions
+  return shuffled.slice(0, num); // Pick first 'num' questions
+}
+
+// Start the Quiz
+function startQuiz() {
+  if (selectedQuestions.length > 0) {
+    loadQuestion();
+  } else {
+    console.error("No questions available to start the quiz.");
+  }
+}
+
+// Load and display a question
+function loadQuestion() {
+  if (currentQuestionIndex >= selectedQuestions.length) {
+    showResult();
+    return;
+  }
+
+  _checkBtn.disabled = false;
+  _result.innerHTML = "";
+
+  const questionData = selectedQuestions[currentQuestionIndex];
+  _question.innerHTML = `${questionData.question} <br> <span class="category">${questionData.category}</span>`;
+
+  let optionsList = [...questionData.options]; // Copy options
+  _options.innerHTML = optionsList
+    .map(
+      (option, index) =>
+        `<li> ${index + 1}. <span> ${option} </span> </li>`
+    )
+    .join("");
+
   selectOption();
 }
-function selectOption(){
-    _options.querySelectorAll('li').forEach((option)=>{
-     option.addEventListener('click',()=>{
-    if(_options.querySelector('.selected')){
-      const activeOption=_options.querySelector('.selected');
-      activeOption.classList.remove('selected');
-    }
-    option.classList.add('selected');
-  });
-});
-console.log(correctAnswer);
-}
 
-//answer checking
-function checkAnswer(){
-  _checkBtn.disabled=true;
-  if(_options.querySelector('.selected')){
-    let selectedAnswer = _options.querySelector('.selected span').textContent;
-    if(selectedAnswer.trim()==HTMLDecode(correctAnswer)){
-      correctScore++;
-      _result.innerHTML=`<p><i class="fas fa-check"></i>Correct Answer!</p>`;}
-      else{
-        _result.innerHTML=`<p><i class="fas fa-times"></i>wrong Answer!</p><small><b>Correct Anser:</b>${correctAnswer}</small></p>`;
+// Highlight selected option
+function selectOption() {
+  _options.querySelectorAll("li").forEach((option) => {
+    option.addEventListener("click", () => {
+      if (_options.querySelector(".selected")) {
+        _options.querySelector(".selected").classList.remove("selected");
       }
-      checkCount();
-    }
-    else{
-      _result.innerHTML=`<p><i class="fas fa-question"></i>please select an option!</p>`;
-      _checkBtn.disabled=false;
-    }
-  }
+      option.classList.add("selected");
+    });
+  });
+}
 
-  function HTMLDecode(textString){
-    let doc=new DOMParser().parseFromString(textString,"text/html");
-    return doc.documentElement.textContent;
+// Check Answer
+// Check Answer and Update Score
+function checkAnswer() {
+    _checkBtn.disabled = true;
+  
+    if (_options.querySelector(".selected")) {
+      let selectedAnswer = _options.querySelector(".selected span").textContent.trim();
+      let correctAnswer = selectedQuestions[currentQuestionIndex].answer;
+  
+      if (selectedAnswer === correctAnswer) {
+        correctScore++; // Increase score
+        _result.innerHTML = `<p><i class="fas fa-check"></i> Correct Answer! +1 Point</p>`;
+      } else {
+        _result.innerHTML = `<p><i class="fas fa-times"></i> Wrong Answer!</p>
+        <small><b>Correct Answer:</b> ${correctAnswer}</small>`;
+      }
+  
+      // Update the score display
+      _correctScore.textContent = correctScore;
+  
+      currentQuestionIndex++;
+      setTimeout(loadQuestion, 500); // Load next question after 500ms
+    } else {
+      _result.innerHTML = `<p><i class="fas fa-question"></i> Please select an option!</p>`;
+      _checkBtn.disabled = false;
+    }
   }
+  
 
-function checkCount(){
-  askedCount++;
-  setCount();
-  if(askedCount==totalQuestion){
-      _result.innerHTML=`<p> your score is ${correctScore}.</p>`
-      _playAgainBtn.style.display="block";
-      _checkBtn.style.display="none";
-  }
-  else{
-    setTimeout(()=>{
-        loadQuestion();
-    },300);
-  }
+// Show Final Score
+function showResult() {
+  _question.innerHTML = `<p>Quiz Completed!</p>`;
+  _options.innerHTML = `<p>Your final score is ${correctScore}/${totalQuestions}.</p>`;
+  _checkBtn.style.display = "none";
+  _playAgainBtn.style.display = "block";
 }
-function setCount(){
-  _totalQuestion.textContent=totalQuestion;
-  _correctScore.textContent=correctScore;
+
+// Restart Quiz
+function restartQuiz() {
+  correctScore = 0;
+  currentQuestionIndex = 0;
+  _playAgainBtn.style.display = "none";
+  _checkBtn.style.display = "block";
+  _checkBtn.disabled = false;
+  _result.innerHTML = "";
+  
+  selectedQuestions = getRandomQuestions(questions, 10); // Pick new set of 10 questions
+  startQuiz();
 }
-function restartQuiz(){
-  correctScore = askedCount=0;
-  _playAgainBtn.style.display="none";
-  _checkBtn.style.display="block";
-  _checkBtn.disabled=false;
-  setCount();
-  loadQuestion();
-}
+
   </script>
 </body>
 </html>
