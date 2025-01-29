@@ -28,18 +28,6 @@
     "answer":"Thomous salva edision",
     "category":"Physics"
   },
-  {
-    "question": "What is the capital of France?",
-    "answer":"Paris",
-    "options": ["Berlin", "Madrid", "Lisbon","Paris"],
-    "category": "Geography"
-},
-{
-    "question": "Which programming language is used for web development?",
-    "options": ["Python", "C++", "Java","JavaScript"],
-    "answer":"JavaScript",
-    "category": "Programming"
-},
 {
     "question": "Which is the smallest planet in our Solar System?",
     "answer":"Mercury",
