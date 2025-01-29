@@ -42,7 +42,7 @@
 },
 {
     "question":"What is the currency of Japan?",
-    "answer":"yen",
+    "answer":"Yen",
     "options":["Dollar", "Euro", "Won","Yen"],
     "category":"Finance"
 },
