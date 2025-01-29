@@ -1,0 +1,85 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "options": ["Berlin", "Madrid", "Paris", "Lisbon"],
+    "answer": "Paris",
+    "category": "Geography"
+  },
+  {
+    "question": "Which programming language is used for web development?",
+    "options": ["Python", "JavaScript", "C++", "Java"],
+    "answer": "JavaScript",
+    "category": "Technology"
+  },
+  {
+    "question": "What does HTML stand for?",
+    "options": [
+      "HyperText Markup Language",
+      "HighText Machine Language",
+      "HyperLoop Machine Language",
+      "None of the above"
+    ],
+    "answer": "HyperText Markup Language",
+    "category": "Technology"
+  },
+  {
+    "question":"Who invented by Bulb?",
+    "options":["Berlin","Trump","None of the above","Thomous salva edision"],
+    "answer":"Thomous salva edision",
+    "category":"Physics"
+  },
+  {
+    "question": "What is the capital of France?",
+    "answer":"Paris",
+    "options": ["Berlin", "Madrid", "Lisbon","Paris"],
+    "category": "Geography"
+},
+{
+    "question": "Which programming language is used for web development?",
+    "options": ["Python", "C++", "Java","JavaScript"],
+    "answer":"JavaScript",
+    "category": "Programming"
+},
+{
+    "question": "Which is the smallest planet in our Solar System?",
+    "answer":"Mercury",
+    "options": ["Venus", "Mars", "Earth","Mercury"],
+    "category":"Astronomy"
+},
+{
+    "question": "Who wrote 'Hamlet'?",
+    "answer":"William Shakespeare",
+    "options": ["Charles Dickens","William Shakespeare", "Jane Austen", "Mark Twain"],
+    "category": "Literature"
+},
+{
+    "question":"What is the currency of Japan?",
+    "answer":"yen",
+    "options":["Dollar", "Euro", "Won","Yen"],
+    "category":"Finance"
+},
+{
+    "question": "What is the square root of 64?",
+    "answer":"8",
+    "options": ["6", "7", "9","8"],
+    "category": "Mathematics"
+},
+{
+    "question":"Which continent is known as the 'Dark Continent'?",
+    "answer": "Africa",
+    "options": ["Asia", "Australia","Africa", "Antarctica"],
+    "category": "Geography"
+},
+{
+    "question": "What is the chemical symbol for Gold?",
+    "answer":"Au",
+    "options": ["Au","Ag", "Gd", "Pb"],
+    "category":"Chemistry"
+},
+{
+    "question":"Who discovered gravity?",
+    "answer":"Albert Einstein",
+    "options": ["Albert Einstein","Isaac Newton", "Galileo Galilei", "Nikola Tesla"],
+    "category": "Physics"
+}
+]
